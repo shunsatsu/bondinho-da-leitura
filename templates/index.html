@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bondinho da Leitura</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f4ed;
+            color: #26352d;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #164b36;
+            color: white;
+            padding: 22px 8%;
+        }
+
+        header h1 {
+            font-size: 26px;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 70px auto;
+            padding: 0 24px;
+        }
+
+        .apresentacao {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .apresentacao h2 {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .apresentacao p {
+            color: #59665e;
+            font-size: 18px;
+        }
+
+        .opcoes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .opcao {
+            background-color: white;
+            border: 1px solid #dce3dc;
+            border-radius: 10px;
+            padding: 28px;
+            text-align: center;
+        }
+
+        .opcao h3 {
+            color: #164b36;
+            margin-bottom: 10px;
+        }
+
+        .opcao p {
+            color: #59665e;
+            font-size: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #59665e;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                margin: 40px auto;
+            }
+
+            .apresentacao h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Bondinho da Leitura</h1>
+    </header>
+
+    <main>
+        <section class="apresentacao">
+            <h2>Descubra sua próxima leitura.</h2>
+            <p>
+                Consulte livros, conheça os serviços da biblioteca
+                e acompanhe a programação cultural.
+            </p>
+        </section>
+
+        <section class="opcoes">
+            <article class="opcao">
+                <h3>Consultar livros</h3>
+                <p>Pesquise livros pelo título ou pelo nome do autor.</p>
+            </article>
+
+            <article class="opcao">
+                <h3>Serviços da biblioteca</h3>
+                <p>Conheça os serviços oferecidos pela biblioteca.</p>
+            </article>
+
+            <article class="opcao">
+                <h3>Programação cultural</h3>
+                <p>Consulte as atividades culturais disponíveis.</p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>Bondinho da Leitura — Projeto acadêmico</p>
+    </footer>
+
+</body>
+</html>
