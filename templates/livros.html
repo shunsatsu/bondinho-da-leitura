@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar livros | Bondinho da Leitura</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f4ed;
+            color: #263b32;
+        }
+
+        header {
+            background: #174d3b;
+            color: white;
+            padding: 24px 9%;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        form {
+            display: flex;
+            gap: 10px;
+            margin: 25px 0;
+        }
+
+        input {
+            flex: 1;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 13px 22px;
+            border: none;
+            border-radius: 6px;
+            background: #174d3b;
+            color: white;
+            cursor: pointer;
+        }
+
+        .livro {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .livro h2 {
+            margin-top: 0;
+            color: #174d3b;
+        }
+
+        a {
+            color: #174d3b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Bondinho da Leitura</h1>
+    </header>
+
+    <main>
+        <a href="/">Voltar ao início</a>
+
+        <h1>Consultar livros</h1>
+
+        <p>Pesquise pelo título de um livro ou pelo nome de um autor.</p>
+
+        <form method="GET" action="/livros">
+            <input
+                type="search"
+                name="q"
+                placeholder="Digite um título ou autor..."
+                value="{{ termo }}"
+                aria-label="Título do livro ou nome do autor"
+                required
+            >
+
+            <button type="submit">Pesquisar</button>
+        </form>
+
+        {% if termo %}
+            <h2>Resultados da pesquisa</h2>
+
+            {% if livros %}
+                {% for livro in livros %}
+                    <article class="livro">
+                        <h2>{{ livro.titulo }}</h2>
+
+                        <p><strong>Autor(es):</strong> {{ livro.autores }}</p>
+
+                        <p><strong>ISBN:</strong> {{ livro.isbn or "Não informado" }}</p>
+
+                        <p>
+                            <strong>Ano de publicação:</strong>
+                            {{ livro.ano_publicacao or "Não informado" }}
+                        </p>
+                    </article>
+                {% endfor %}
+            {% else %}
+                <p>Nenhum livro encontrado para "{{ termo }}".</p>
+            {% endif %}
+        {% endif %}
+    </main>
+
+</body>
+</html>

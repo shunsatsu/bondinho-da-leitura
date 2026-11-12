@@ -1,94 +1,120 @@
-
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Bondinho da Leitura</title>
 
     <style>
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
         body {
-            font-family: Arial, sans-serif;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
             background-color: #f5f4ed;
-            color: #26352d;
-            line-height: 1.6;
+            color: #263b32;
         }
 
         header {
-            background-color: #164b36;
+            background-color: #174d3b;
             color: white;
-            padding: 22px 8%;
+            padding: 20px 9%;
         }
 
         header h1 {
-            font-size: 26px;
+            margin: 0;
+            font-size: 24px;
         }
 
         main {
-            max-width: 1000px;
-            margin: 70px auto;
-            padding: 0 24px;
-        }
-
-        .apresentacao {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 20px;
             text-align: center;
-            margin-bottom: 50px;
         }
 
-        .apresentacao h2 {
-            font-size: 36px;
-            margin-bottom: 12px;
+        .introducao h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
         }
 
-        .apresentacao p {
-            color: #59665e;
-            font-size: 18px;
+        .introducao p {
+            color: #626b65;
+            line-height: 1.6;
         }
 
-        .opcoes {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+        .cartoes {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 40px;
         }
 
-        .opcao {
+        .card {
+            width: 240px;
+            min-height: 116px;
+            padding: 22px 18px;
             background-color: white;
-            border: 1px solid #dce3dc;
-            border-radius: 10px;
-            padding: 28px;
+            border: 1px solid #e0e5df;
+            border-radius: 9px;
             text-align: center;
+            color: inherit;
         }
 
-        .opcao h3 {
-            color: #164b36;
-            margin-bottom: 10px;
+        a.card {
+            display: block;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .opcao p {
-            color: #59665e;
-            font-size: 15px;
+        a.card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        a.card:focus-visible {
+            outline: 3px solid #00a66c;
+            outline-offset: 4px;
+        }
+
+        .card h3 {
+            margin: 0 0 12px;
+            color: #174d3b;
+            font-size: 17px;
+        }
+
+        .card p {
+            margin: 0;
+            color: #626b65;
+            font-size: 13px;
+            line-height: 1.5;
         }
 
         footer {
+            margin-top: 75px;
+            padding: 20px;
             text-align: center;
-            padding: 25px;
-            color: #59665e;
-            font-size: 14px;
+            color: #626b65;
+            font-size: 12px;
         }
 
         @media (max-width: 600px) {
             main {
-                margin: 40px auto;
+                margin-top: 40px;
             }
 
-            .apresentacao h2 {
-                font-size: 28px;
+            .introducao h2 {
+                font-size: 24px;
+            }
+
+            .card {
+                width: 100%;
             }
         }
     </style>
@@ -101,35 +127,47 @@
     </header>
 
     <main>
-        <section class="apresentacao">
+
+        <section class="introducao">
             <h2>Descubra sua próxima leitura.</h2>
+
             <p>
                 Consulte livros, conheça os serviços da biblioteca
                 e acompanhe a programação cultural.
             </p>
         </section>
 
-        <section class="opcoes">
-            <article class="opcao">
+        <section class="cartoes" aria-label="Funcionalidades">
+
+            <a href="{{ url_for('livros.consultar_livros') }}" class="card">
                 <h3>Consultar livros</h3>
-                <p>Pesquise livros pelo título ou pelo nome do autor.</p>
-            </article>
+                <p>
+                    Pesquise livros pelo título ou pelo nome do autor.
+                </p>
+            </a>
 
-            <article class="opcao">
+            <div class="card">
                 <h3>Serviços da biblioteca</h3>
-                <p>Conheça os serviços oferecidos pela biblioteca.</p>
-            </article>
+                <p>
+                    Conheça os serviços oferecidos pela biblioteca.
+                </p>
+            </div>
 
-            <article class="opcao">
+            <div class="card">
                 <h3>Programação cultural</h3>
-                <p>Consulte as atividades culturais disponíveis.</p>
-            </article>
+                <p>
+                    Consulte as atividades culturais disponíveis.
+                </p>
+            </div>
+
         </section>
+
     </main>
 
     <footer>
-        <p>Bondinho da Leitura — Projeto acadêmico</p>
+        Bondinho da Leitura — Projeto acadêmico
     </footer>
 
 </body>
 </html>
+```
