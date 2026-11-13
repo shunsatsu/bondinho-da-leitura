@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programação cultural | Bondinho da Leitura</title>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f4ed;
+            color: #263b32;
+        }
+
+        header {
+            background: #174d3b;
+            color: white;
+            padding: 20px 9%;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .atividade {
+            background: white;
+            border: 1px solid #e0e5df;
+            border-radius: 9px;
+            padding: 22px;
+            margin: 18px 0;
+        }
+
+        h2 { color: #174d3b; }
+
+        a { color: #174d3b; }
+
+        .detalhes {
+            color: #626b65;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Bondinho da Leitura</h1>
+    </header>
+
+    <main>
+        <a href="/">Voltar ao início</a>
+
+        <h2>Programação cultural</h2>
+        <p>Conheça as atividades culturais disponíveis.</p>
+
+        {% if atividades %}
+            {% for atividade in atividades %}
+                <article class="atividade">
+                    <h2>{{ atividade.titulo }}</h2>
+
+                    {% if atividade.descricao %}
+                        <p>{{ atividade.descricao }}</p>
+                    {% endif %}
+
+                    <div class="detalhes">
+                        <p>
+                            <strong>Início:</strong>
+                            {{ atividade.data_inicio.strftime('%d/%m/%Y às %H:%M') }}
+                        </p>
+
+                        <p>
+                            <strong>Encerramento:</strong>
+                            {{ atividade.data_fim.strftime('%d/%m/%Y às %H:%M') }}
+                        </p>
+
+                        <p>
+                            <strong>Local:</strong>
+                            {{ atividade.local or "Não informado" }}
+                        </p>
+                    </div>
+                </article>
+            {% endfor %}
+        {% else %}
+            <p>Não há atividades culturais programadas no momento.</p>
+        {% endif %}
+    </main>
+</body>
+</html>

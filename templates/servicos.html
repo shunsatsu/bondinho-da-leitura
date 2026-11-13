@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços | Bondinho da Leitura</title>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f4ed;
+            color: #263b32;
+        }
+
+        header {
+            background: #174d3b;
+            color: white;
+            padding: 20px 9%;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .servico {
+            background: white;
+            border: 1px solid #e0e5df;
+            border-radius: 9px;
+            padding: 22px;
+            margin: 18px 0;
+        }
+
+        h2 { color: #174d3b; }
+
+        a { color: #174d3b; }
+
+        .orientacoes {
+            color: #626b65;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Bondinho da Leitura</h1>
+    </header>
+
+    <main>
+        <a href="/">Voltar ao início</a>
+
+        <h2>Serviços da biblioteca</h2>
+        <p>Conheça os serviços disponíveis.</p>
+
+        {% if servicos %}
+            {% for servico in servicos %}
+                <article class="servico">
+                    <h2>{{ servico.nome }}</h2>
+                    <p>{{ servico.descricao }}</p>
+
+                    {% if servico.orientacoes %}
+                        <p class="orientacoes">
+                            <strong>Orientações:</strong>
+                            {{ servico.orientacoes }}
+                        </p>
+                    {% endif %}
+                </article>
+            {% endfor %}
+        {% else %}
+            <p>Nenhum serviço disponível no momento.</p>
+        {% endif %}
+    </main>
+</body>
+</html>
