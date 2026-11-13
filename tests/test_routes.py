@@ -100,3 +100,19 @@ def test_pagina_de_programacao(client, monkeypatch):
     assert resposta.status_code == 200
     assert b"Encontro de leitura" in resposta.data
     assert b"Espa" in resposta.data
+
+def test_pesquisa_de_livros_vazia(client, monkeypatch):
+    from controllers import livros_controller
+
+    def busca_nao_deve_ser_executada(termo):
+        pytest.fail("A busca não deveria ser executada com termo vazio")
+
+    monkeypatch.setattr(
+        livros_controller,
+        "buscar_livros",
+        busca_nao_deve_ser_executada
+    )
+
+    resposta = client.get("/livros?q=")
+
+    assert resposta.status_code == 200
