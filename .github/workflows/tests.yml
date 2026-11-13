@@ -1,0 +1,62 @@
+
+name: Testes automatizados
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_DB: bondinho_leitura
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d bondinho_leitura"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_NAME: bondinho_leitura
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+
+      - name: Instalar cliente PostgreSQL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Criar estrutura do banco
+        run: |
+          PGPASSWORD=postgres psql -h localhost -U postgres -d bondinho_leitura -f database/schema.sql
+          PGPASSWORD=postgres psql -h localhost -U postgres -d bondinho_leitura -f database/seed.sql
+          PGPASSWORD=postgres psql -h localhost -U postgres -d bondinho_leitura -f database/seed_conteudo.sql
+
+      - name: Executar testes
+        run: python -m pytest -v
