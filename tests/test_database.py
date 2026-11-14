@@ -46,3 +46,10 @@ def test_consulta_atividades_no_banco():
         atividade["titulo"] == "Encontro de leitura"
         for atividade in atividades
     )
+
+def test_busca_livros_nao_executa_sql_injetado():
+    termo = "' OR '1'='1"
+
+    livros = buscar_livros(termo)
+
+    assert livros == []
