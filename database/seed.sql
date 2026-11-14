@@ -8,6 +8,7 @@ BEGIN;
 INSERT INTO autor (nome)
 SELECT dados.nome
 FROM (VALUES
+    ('Neil Gaiman'),
     ('Machado de Assis'),
     ('Jane Austen'),
     ('Mary Shelley'),
@@ -21,6 +22,7 @@ WHERE NOT EXISTS (
 INSERT INTO livro (titulo, ano_publicacao)
 SELECT dados.titulo, dados.ano_publicacao
 FROM (VALUES
+    ('Absolute Sandman', 2006),
     ('Dom Casmurro', 1899),
     ('O Alienista', 1882),
     ('Orgulho e Preconceito', 1813),
@@ -35,6 +37,7 @@ WHERE NOT EXISTS (
 INSERT INTO livro_autor (id_livro, id_autor)
 SELECT l.id_livro, a.id_autor
 FROM (VALUES
+    ('Absolute Sandman', 'Neil Gaiman'),
     ('Dom Casmurro', 'Machado de Assis'),
     ('O Alienista', 'Machado de Assis'),
     ('Orgulho e Preconceito', 'Jane Austen'),
